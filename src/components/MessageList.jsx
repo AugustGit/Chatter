@@ -7,6 +7,7 @@ const renderMessage = (message) => {
   if (message.type === 'system') {
     return (
       <SystemMessage
+        key={message.id}
         username={message.username}
         content={message.content}
       />
@@ -14,6 +15,7 @@ const renderMessage = (message) => {
   } else {
     return (
       <Message
+        key={message.id}
         username={message.username}
         content={message.content}
       />
@@ -21,7 +23,7 @@ const renderMessage = (message) => {
   }
 }
 
- const MessageList = (props) => (
+const MessageList = (props) => (
  <main className="messages">
  {props.messages.map((message) => renderMessage(message))}
   </main>
