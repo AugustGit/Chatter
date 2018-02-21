@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
     this.state = {
       type: 'message',
-      username: 'Anonymous',
+      username: 'Bob',
       messages: []
     }
     this.socket = new WebSocket("ws:localhost:3001");
@@ -47,13 +47,20 @@ class App extends Component {
     })
   }
 
-componentDidMount() {
-  this.socket.onopen = (event) => {
-       console.log("Socket open")
-       let messages = this.state.messages
-       this.socket.send (JSON.stringify(messages));
+  componentDidMount() {
+    this.socket.onopen = (event) => {
+         console.log("Socket open")
+         let messages = this.state.messages
+       //  this.socket.send (JSON.stringify(messages));
+    }
+    this.socket.onmessage = (event) =>  {
+      console.log("event ", event)
+     let messageJSON = JSON.parse(event.data);
+     let messages = this.state.messages;
+        messages.push(messageJSON)
+      this.setState({messages: messages})
+   }
   }
-}
 
  handleMessage = (content) => {
 
@@ -63,9 +70,10 @@ componentDidMount() {
     username: this.state.username,
     content: content
   }
-  let messages = this.state.messages
-  messages.push(newMessage)
-  this.setState({message: messages})
+  // let messages = this.state.messages
+  // messages.push(newMessage)
+  this.socket.send (JSON.stringify(newMessage));
+  //this.setState({message: messages})
  }
 
   render() {
