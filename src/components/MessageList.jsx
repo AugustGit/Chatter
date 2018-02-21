@@ -4,7 +4,7 @@ import SystemMessage from './SystemMessage.jsx'
 
 
 const renderMessage = (message) => {
-  console.log("list version", message)
+
 
   if (message.type === 'system') {
     return (

@@ -67,7 +67,7 @@ class App extends Component {
 
 
   render() {
-    console.log("RENDER:", this.state.messages)
+
     return (
       <div>
       <Navbar/>
