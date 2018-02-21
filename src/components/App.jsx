@@ -14,7 +14,7 @@ class App extends Component {
       username: 'Anonymous',
       messages: []
     }
-
+    this.socket = new WebSocket("ws:localhost:3001");
   }
 
   componentWillMount() {
@@ -43,11 +43,17 @@ class App extends Component {
                     username: 'Jacob Allen',
                     content: "did something"
                   }
-                ],
-       idArray: [0, 1, 2]
+                ]
     })
   }
 
+componentDidMount() {
+  this.socket.onopen = (event) => {
+       console.log("Socket open")
+       let messages = this.state.messages
+       this.socket.send (JSON.stringify(messages));
+  }
+}
 
  handleMessage = (content) => {
 
@@ -60,11 +66,7 @@ class App extends Component {
   let messages = this.state.messages
   messages.push(newMessage)
   this.setState({message: messages})
-
  }
-
-
-
 
   render() {
 
