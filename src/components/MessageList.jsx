@@ -4,6 +4,8 @@ import SystemMessage from './SystemMessage.jsx'
 
 
 const renderMessage = (message) => {
+  console.log("list version", message)
+
   if (message.type === 'system') {
     return (
       <SystemMessage
@@ -25,9 +27,10 @@ const renderMessage = (message) => {
 
 const MessageList = (props) => (
  <main className="messages">
- {props.messages.map((message) => renderMessage(message))}
+ {props.messages.map((message) =>  renderMessage(message))}
   </main>
   )
 
 export default MessageList;
+
 
