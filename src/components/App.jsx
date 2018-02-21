@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
     this.state = {
       type: 'message',
-      username: 'Bob',
+      username: 'Anonymous',
       messages: []
     }
     this.socket = new WebSocket("ws:localhost:3001");

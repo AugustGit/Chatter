@@ -5,6 +5,7 @@ class Chatbar extends Component {
   onKeyPress = (ev) => {
     console.log("enter key press")
     if (ev.key === "Enter") {
+       console.log(ev.target.value)
       this.props.handleMessage(ev.target.value)
       ev.target.value = ""
     }
@@ -20,9 +21,11 @@ class Chatbar extends Component {
     return (
 
         <footer className="chatbar">
+
           <input className="chatbar-username" placeholder="Your Name (Optional)" />
           <input className="chatbar-message" placeholder="Type a message and hit ENTER"
           onKeyPress={this.onKeyPress}/>
+
         </footer>
 
     );
