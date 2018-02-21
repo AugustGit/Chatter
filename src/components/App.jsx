@@ -15,6 +15,8 @@ class App extends Component {
       messages: []
     }
     this.socket = new WebSocket("ws:localhost:3001");
+   // this.handleChange = this.handleChange.bind(this);
+ //   this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -30,12 +32,6 @@ class App extends Component {
                   type: 'message',
                   username: "Bob",
                   content: "Has anyone seen my marbles?",
-                },
-                {
-                  id: 1,
-                  type: 'message',
-                  username: "Anonymous",
-                  content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
                 },
                   {
                     id: 2,
@@ -62,19 +58,28 @@ class App extends Component {
    }
   }
 
- handleMessage = (content) => {
+  handleMessage = (content) => {
+  console.log("message content ", content)
+    const newMessage = {
+      id: this.state.messages.length++,
+      type:'message',
+      username: this.state.username,
+      content: content
+    }
+    // let messages = this.state.messages
+    // messages.push(newMessage)
+    this.socket.send (JSON.stringify(newMessage));
+    //this.setState({message: messages})
+   }
 
-  const newMessage = {
-    id: this.state.messages.length++,
-    type:'message',
-    username: this.state.username,
-    content: content
+  handleName = (content) => {
+  console.log("username content ", content)
+     this.setState({
+     username: content
+    })
   }
-  // let messages = this.state.messages
-  // messages.push(newMessage)
-  this.socket.send (JSON.stringify(newMessage));
-  //this.setState({message: messages})
- }
+
+
 
   render() {
 
@@ -84,7 +89,7 @@ class App extends Component {
 
        <MessageList messages={this.state.messages}/>
 
-      <Chatbar handleMessage={this.handleMessage}/>
+      <Chatbar handleMessage={this.handleMessage} handleName={this.handleName} />
       </div>
 
     );
