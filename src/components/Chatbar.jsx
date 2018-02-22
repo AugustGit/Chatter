@@ -6,20 +6,28 @@ class Chatbar extends Component {
     console.log("enter key press for username")
     if (ev.key === "Enter") {
        console.log("onUserKeyPress ", ev.target.value)
+       if(ev.target.value.trim() === "" ){
+        event.preventDefault()
+       } else {
+        console.log("onUserKeyPress ", ev.target.value)
       this.props.handleName(ev.target.value)
       ev.target.value = ""
     }
+   }
   }
-
   onKeyPress = (ev) => {
     console.log("enter key press")
     if (ev.key === "Enter") {
        console.log("onKeyPress ", ev.target.value)
+       if(ev.target.value.trim() === "" ){
+        event.preventDefault()
+       } else {
+        console.log("onKeyPress ", ev.target.value)
       this.props.handleMessage(ev.target.value)
       ev.target.value = ""
     }
+   }
   }
-
 
   render() {
     return (
