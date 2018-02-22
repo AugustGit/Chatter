@@ -21,17 +21,25 @@ const wss = new SocketServer({ server });
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
+
+
+
+
+
 wss.on('connection', (ws) => {
-  console.log('Client connected');
-
-
+          console.log('Client connected');
+  let serverCountJSON = {type: "usersConnected", usercount : server._connections }
+    serverCountJSON.usercount = server._connections
+            console.log(" # of connections ",  serverCountJSON)
+  ws.send(JSON.stringify(serverCountJSON));
 
  ws.on('message', function incoming(message) {
   let messageJSON = JSON.parse(message);
    //for (message of messageJSON ){
-   console.log(messageJSON.username, " said: ", messageJSON.content);
+   console.log(messageJSON.username, " said: ", messageJSON.content, " userscount is ", messageJSON.usercount);
     let id = uuidv4();
     messageJSON.id = id
+    messageJSON.usercount = serverCountJSON
     console.log(id)
   ws.send(JSON.stringify(messageJSON));
 
