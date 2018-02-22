@@ -32,13 +32,7 @@ class App extends Component {
                   type: 'message',
                   username: "Bob",
                   content: "Has anyone seen my marbles?",
-                },
-                  {
-                    id: 2,
-                    type: 'system',
-                    username: 'Jacob Allen',
-                    content: "did something"
-                  }
+                }
                 ]
     })
   }
@@ -73,10 +67,18 @@ class App extends Component {
    }
 
   handleName = (content) => {
-  console.log("username content ", content)
+    console.log("username content ", content)
+      const newMessage = {
+        id: this.state.messages.length++,
+        type:'system',
+        username: this.state.username,
+        content: (this.state.username, "changed their name to ", content)
+      }
+        this.socket.send (JSON.stringify(newMessage))
+
      this.setState({
      username: content
-    })
+     })
   }
 
 
