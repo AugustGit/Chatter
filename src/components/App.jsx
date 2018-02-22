@@ -26,7 +26,7 @@ class App extends Component {
     console.log("COMPONENT WILL MOUNT")
     console.log(this.state.messages)
     this.setState({
-        usercount: "",
+        usercount: 0,
         messages: [
                 {
                   id: 0,
@@ -42,20 +42,20 @@ class App extends Component {
     this.socket.onopen = (event) => {
          console.log("Socket open")
          let messages = this.state.messages
+
     }
     this.socket.onmessage = (event) =>  {
-      console.log("event ", event)
+     console.log("event ", event)
      let messageJSON = JSON.parse(event.data);
-     if(messageJSON.type = "usersConnected") {
-      console.log("messageJSON.usercount ", messageJSON.usercount)
-      let count = messageJSON.usercount
-      this.setState({
-        usercount: count
-      })
-     }
-     let messages = this.state.messages;
+       if(messageJSON.type === "usersConnected") {
+        let count = messageJSON.usercount
+        this.setState({usercount: count})
+        console.log("NEW USER COUNT ", this.state.usercount)
+       } else {
+      let messages = this.state.messages;
         messages.push(messageJSON)
-      this.setState({messages: messages})
+        this.setState({messages: messages})
+      }
    }
   }
 
@@ -79,6 +79,7 @@ class App extends Component {
 
   handleName = (content) => {
     console.log("username content ", content)
+
       const newMessage = {
         id: this.state.messages.length++,
         type:'system',
@@ -89,7 +90,6 @@ class App extends Component {
 
      this.setState({
      username: content
-
      })
   }
 

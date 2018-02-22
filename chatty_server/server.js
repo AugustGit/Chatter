@@ -36,10 +36,9 @@ wss.on('connection', (ws) => {
  ws.on('message', function incoming(message) {
   let messageJSON = JSON.parse(message);
    //for (message of messageJSON ){
-   console.log(messageJSON.username, " said: ", messageJSON.content, " userscount is ", messageJSON.usercount);
+   console.log(messageJSON.username, " said: ", messageJSON.content);
     let id = uuidv4();
     messageJSON.id = id
-    messageJSON.usercount = serverCountJSON
     console.log(id)
   ws.send(JSON.stringify(messageJSON));
 
