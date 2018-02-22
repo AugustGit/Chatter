@@ -7,6 +7,7 @@ class Chatbar extends Component {
     if (ev.key === "Enter") {
        console.log("onUserKeyPress ", ev.target.value)
        if(ev.target.value.trim() === "" ){
+        console.log("you can not have an empty feild")
         event.preventDefault()
        } else {
         console.log("onUserKeyPress ", ev.target.value)
@@ -20,6 +21,7 @@ class Chatbar extends Component {
     if (ev.key === "Enter") {
        console.log("onKeyPress ", ev.target.value)
        if(ev.target.value.trim() === "" ){
+        console.log("you can not have an empty feild")
         event.preventDefault()
        } else {
         console.log("onKeyPress ", ev.target.value)
