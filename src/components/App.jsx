@@ -15,53 +15,45 @@ class App extends Component {
       messages: []
     }
     this.socket = new WebSocket("ws:localhost:3001");
-   // this.handleChange = this.handleChange.bind(this);
- //   this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+//As soon as App opens.....
   componentWillMount() {
-    // Fetch data from the server
-    // $.getJSON('/messages').then(...)
-    // Put it in a variable, then...
     console.log("COMPONENT WILL MOUNT")
-    console.log(this.state.messages)
     this.setState({
         usercount: 0,
         messages: [
                 {
                   id: 0,
                   type: 'message',
-                  username: "Bob",
-                  content: "Has anyone seen my marbles?",
+                  username: "",
+                  content: "",
                 }
                 ]
     })
   }
-
+//New data flowing in every time server has event
   componentDidMount() {
     this.socket.onopen = (event) => {
          console.log("Socket open")
          let messages = this.state.messages
-
     }
+//User count updated on event decided by message type
     this.socket.onmessage = (event) =>  {
      console.log("event ", event)
      let messageJSON = JSON.parse(event.data);
        if(messageJSON.type === "usersConnected") {
         let count = messageJSON.usercount
         this.setState({usercount: count})
-        console.log("NEW USER COUNT ", this.state.usercount)
-       } else {
+       } else { // if it is to be posted to Messagelist then the function of what kind ofg message happens in MessageList
       let messages = this.state.messages;
         messages.push(messageJSON)
         this.setState({messages: messages})
       }
-   }
+    }
   }
 
-
-
-
+//New MESSAGE posts
   handleMessage = (content) => {
   console.log("message content ", content)
 
@@ -71,12 +63,9 @@ class App extends Component {
       username: this.state.username,
       content: content
     }
-
     this.socket.send (JSON.stringify(newMessage));
-
-
    }
-
+//Notification of new USERNAME
   handleName = (content) => {
     console.log("username content ", content)
 
@@ -86,28 +75,23 @@ class App extends Component {
         username: this.state.username,
         content: (this.state.username, "changed their name to ", content)
       }
-        this.socket.send (JSON.stringify(newMessage))
-
+    this.socket.send (JSON.stringify(newMessage))
      this.setState({
-     username: content
+      username: content
      })
   }
-
-
 
   render() {
 
     return (
       <div>
       <Navbar usercount={this.state.usercount} />
-
-       <MessageList messages={this.state.messages}/>
-
+      <MessageList messages={this.state.messages}/>
       <Chatbar handleMessage={this.handleMessage} handleName={this.handleName} />
       </div>
-
     );
   }
 }
+
 export default App;
 

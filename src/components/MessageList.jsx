@@ -5,7 +5,7 @@ import SystemMessage from './SystemMessage.jsx'
 
 const renderMessage = (message) => {
 
-
+//NEW USER notification
   if (message.type === 'system') {
     return (
       <SystemMessage
@@ -14,6 +14,7 @@ const renderMessage = (message) => {
         content={message.content}
       />
     )
+//NEW MESSAGE
   } else {
     return (
       <Message
