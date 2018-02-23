@@ -37,7 +37,9 @@ class App extends Component {
     this.socket.onopen = (event) => {
          console.log("Socket open")
          let messages = this.state.messages
-    }
+
+      }
+
 //User count updated on event decided by message type
     this.socket.onmessage = (event) =>  {
      console.log("event ", event)

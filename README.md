@@ -41,5 +41,16 @@ npm run lint
 
 * React
 * Webpack
+* babel-core
 * [babel-loader](https://github.com/babel/babel-loader)
+* babel-preset-es2015
+* babel-preset-react
+* css-loader
+* node-sass
+* sass-loader
+* sockjs-client
+* style-loader
+* webpack
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* react
+* sreact-dom
