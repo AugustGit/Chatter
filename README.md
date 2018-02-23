@@ -54,3 +54,8 @@ npm run lint
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 * react
 * sreact-dom
+
+## Screenshots
+![Users intereacting with user count ](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
+
+![Users count goes down when someone leaves](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
