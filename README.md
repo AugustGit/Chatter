@@ -56,6 +56,6 @@ npm run lint
 * sreact-dom
 
 ## Screenshots
-![Users intereacting with user count ](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
+![Users intereacting with user count ](https://github.com/AugustGit/reactboiler/blob/master/whoIsHere.png)
 
-![Users count goes down when someone leaves](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
+![Users count goes down when someone leaves](https://github.com/AugustGit/reactboiler/blob/master/userCountDown.png)
